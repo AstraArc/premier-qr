@@ -1,0 +1,549 @@
+/* ============================================
+   Premier Lighting — Color Bridge Series
+   Shared Stylesheet
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300&family=DM+Sans:wght@300;400;500;700&display=swap');
+
+/* --- Design Tokens --- */
+:root {
+  --bg: #0a0a0f;
+  --surface: #141419;
+  --surface-hover: #1c1c24;
+  --accent: #c9a96e;
+  --accent-hover: #dbbe85;
+  --text: #e8e6e1;
+  --text-muted: #8a8890;
+  --border: #2a2a35;
+  --font-heading: 'Cormorant Garamond', 'Georgia', serif;
+  --font-body: 'DM Sans', 'Helvetica Neue', Arial, sans-serif;
+  --max-width: 500px;
+  --radius: 12px;
+  --radius-sm: 8px;
+}
+
+/* --- Reset & Base --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--accent-hover);
+}
+
+ul, ol {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* --- Layout --- */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 20px 40px;
+}
+
+/* --- Fade-up Animation --- */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-up {
+  animation: fadeUp 0.5s ease-out forwards;
+  opacity: 0;
+}
+
+.fade-up:nth-child(1)  { animation-delay: 0.05s; }
+.fade-up:nth-child(2)  { animation-delay: 0.10s; }
+.fade-up:nth-child(3)  { animation-delay: 0.15s; }
+.fade-up:nth-child(4)  { animation-delay: 0.20s; }
+.fade-up:nth-child(5)  { animation-delay: 0.25s; }
+.fade-up:nth-child(6)  { animation-delay: 0.30s; }
+.fade-up:nth-child(7)  { animation-delay: 0.35s; }
+.fade-up:nth-child(8)  { animation-delay: 0.40s; }
+.fade-up:nth-child(9)  { animation-delay: 0.45s; }
+.fade-up:nth-child(10) { animation-delay: 0.50s; }
+.fade-up:nth-child(11) { animation-delay: 0.55s; }
+.fade-up:nth-child(12) { animation-delay: 0.60s; }
+
+/* ============================================
+   PRODUCT PAGE
+   ============================================ */
+
+/* --- Back Link --- */
+.back-link {
+  display: inline-block;
+  padding: 16px 0 12px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+  transition: color 0.2s;
+}
+
+.back-link:hover {
+  color: var(--accent);
+}
+
+/* --- Image Placeholder --- */
+.image-placeholder {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+
+.image-placeholder .placeholder-icon {
+  font-size: 2.5rem;
+  opacity: 0.3;
+}
+
+.image-placeholder .placeholder-text {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.image-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius);
+}
+
+/* --- Category Badge --- */
+.badge-row {
+  margin-bottom: 12px;
+}
+
+.badge-category {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--bg);
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 999px;
+}
+
+/* --- Product Name --- */
+.product-name {
+  font-family: var(--font-heading);
+  font-weight: 300;
+  font-size: 2rem;
+  line-height: 1.2;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+/* --- Model Number --- */
+.model-number {
+  font-family: 'Courier New', monospace;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 0.03em;
+  margin-bottom: 20px;
+}
+
+/* --- Quick-Reference Tags --- */
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  padding: 4px 12px;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+/* --- Description --- */
+.description {
+  margin-bottom: 24px;
+}
+
+.description p {
+  font-size: 0.95rem;
+  color: var(--text);
+  line-height: 1.7;
+}
+
+/* --- Kit Includes --- */
+.kit-includes {
+  background: var(--surface);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 20px 20px 20px 24px;
+  margin-bottom: 24px;
+}
+
+.kit-includes h3 {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+
+.kit-includes ul {
+  list-style: none;
+}
+
+.kit-includes li {
+  position: relative;
+  padding-left: 22px;
+  font-size: 0.9rem;
+  color: var(--text);
+  line-height: 1.8;
+}
+
+.kit-includes li::before {
+  content: "\2713";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* --- Specifications --- */
+.specs-section {
+  margin-bottom: 24px;
+}
+
+.specs-section h3 {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+
+.specs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.spec-item {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.spec-item:nth-child(odd) {
+  border-right: 1px solid var(--border);
+}
+
+.spec-item:nth-last-child(-n+2) {
+  border-bottom: none;
+}
+
+.spec-label {
+  font-size: 0.65rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 4px;
+}
+
+.spec-value {
+  font-size: 0.9rem;
+  color: var(--text);
+  font-weight: 500;
+}
+
+/* --- Notes Box --- */
+.note-box {
+  background: rgba(201, 169, 110, 0.08);
+  border: 1px solid rgba(201, 169, 110, 0.25);
+  border-radius: var(--radius-sm);
+  padding: 16px 20px;
+  margin-bottom: 24px;
+}
+
+.note-box p {
+  font-size: 0.85rem;
+  color: var(--accent);
+  line-height: 1.6;
+}
+
+.note-box .note-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+  display: block;
+}
+
+/* --- CTA Buttons --- */
+.cta-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 52px;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: none;
+  min-height: 44px;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.btn-primary:hover {
+  background: var(--accent-hover);
+  color: var(--bg);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--accent);
+  border: 1.5px solid var(--accent);
+}
+
+.btn-secondary:hover {
+  background: rgba(201, 169, 110, 0.1);
+  color: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+/* --- Showroom Badge --- */
+.showroom-badge {
+  text-align: center;
+  padding: 24px 16px;
+  border-top: 1px solid var(--border);
+}
+
+.showroom-badge .showroom-icon {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  opacity: 0.5;
+}
+
+.showroom-name {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 6px;
+  letter-spacing: 0.06em;
+}
+
+.showroom-address,
+.showroom-hours,
+.showroom-phone {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.showroom-phone a {
+  color: var(--text-muted);
+}
+
+.showroom-phone a:hover {
+  color: var(--accent);
+}
+
+/* ============================================
+   CATALOG PAGE (index.html)
+   ============================================ */
+
+/* --- Catalog Header --- */
+.catalog-header {
+  text-align: center;
+  padding: 40px 0 32px;
+}
+
+.catalog-header .company-label {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.catalog-header h1 {
+  font-family: var(--font-heading);
+  font-weight: 300;
+  font-size: 2.2rem;
+  line-height: 1.2;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.catalog-header .subtitle {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+}
+
+/* --- Category Section --- */
+.category-section {
+  margin-bottom: 32px;
+}
+
+.category-heading {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  padding-bottom: 10px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* --- Card Grid --- */
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  min-height: 44px;
+}
+
+.product-card:hover {
+  background: var(--surface-hover);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.card-name {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--text);
+  line-height: 1.3;
+  margin-bottom: 6px;
+}
+
+.card-model {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  font-family: 'Courier New', monospace;
+  margin-bottom: 8px;
+}
+
+.card-spec {
+  font-size: 0.75rem;
+  color: var(--accent);
+  font-weight: 500;
+  margin-top: auto;
+}
+
+/* --- Catalog Footer --- */
+.catalog-footer {
+  text-align: center;
+  padding: 20px 0 0;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 360px) {
+  .product-name {
+    font-size: 1.7rem;
+  }
+
+  .catalog-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .card-grid {
+    gap: 8px;
+  }
+
+  .product-card {
+    padding: 12px;
+  }
+}

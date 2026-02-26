@@ -1,0 +1,6 @@
+templates/
+data/
+generate.py
+__pycache__/
+*.pyc
+*.pyo
