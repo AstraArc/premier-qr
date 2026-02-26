@@ -1,6 +1,4 @@
-templates/
-data/
-generate.py
+_old/
 __pycache__/
 *.pyc
 *.pyo

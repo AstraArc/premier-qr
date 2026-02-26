@@ -1,251 +1,1269 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Color Bridge Series | Premier Lighting</title>
-  <meta name="description" content="Premier Lighting Color Bridge Series — Outdoor Track Lighting System. Browse the full product catalog.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Color Bridge Series | Premier Lighting</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #141419;
+    --surface-2: #1c1c24;
+    --border: #2a2a35;
+    --text: #e8e6e1;
+    --text-dim: #8a8890;
+    --accent: #c9a96e;
+    --accent-soft: rgba(201, 169, 110, 0.12);
+    --accent-glow: rgba(201, 169, 110, 0.06);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ---- IMAGE GALLERY ---- */
+  .gallery {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    background: var(--surface);
+    overflow: hidden;
+  }
+  .gallery-track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+  }
+  .gallery-slide {
+    min-width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .gallery-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .placeholder-img {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--surface) 0%, var(--surface-2) 100%);
+    gap: 12px;
+  }
+  .placeholder-img svg {
+    width: 48px;
+    height: 48px;
+    color: var(--border);
+  }
+  .placeholder-img span {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+  .gallery-dots {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 2;
+  }
+  .gallery-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    padding: 0;
+  }
+  .gallery-dot.active {
+    background: var(--accent);
+    width: 20px;
+    border-radius: 3px;
+  }
+  .gallery-counter {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(10px);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.7);
+  }
+  .back-btn {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(10px);
+    border: none;
+    color: white;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    text-decoration: none;
+  }
+  .back-btn svg { width: 18px; height: 18px; }
+
+  /* ---- CONTENT ---- */
+  .content {
+    padding: 28px 24px 40px;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  .category-badge {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+    font-weight: 500;
+    background: var(--accent-soft);
+    padding: 5px 12px;
+    border-radius: 4px;
+  }
+  .product-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+    margin-bottom: 4px;
+  }
+  .product-model {
+    font-size: 12px;
+    color: var(--text-dim);
+    letter-spacing: 0.5px;
+    margin-bottom: 20px;
+    font-family: monospace;
+  }
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 24px;
+  }
+  .tag {
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    background: var(--surface-2);
+    color: var(--text-dim);
+    border: 1px solid var(--border);
+  }
+  .tag.highlight {
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-color: transparent;
+  }
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 0 0 24px;
+  }
+  .description {
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: var(--text-dim);
+    margin-bottom: 28px;
+    font-weight: 300;
+  }
+
+  /* ---- SPECS ---- */
+  .specs-title {
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+  .specs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 28px;
+  }
+  .spec-item {
+    background: var(--surface);
+    padding: 14px 16px;
+  }
+  .spec-label {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 5px;
+    font-weight: 500;
+  }
+  .spec-value {
+    font-size: 14px;
+    color: var(--text);
+    font-weight: 400;
+  }
+
+  /* ---- INCLUDES BOX (for kits) ---- */
+  .includes-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-bottom: 28px;
+  }
+  .includes-box h3 {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 14px;
+    font-weight: 500;
+  }
+  .includes-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13.5px;
+    color: var(--text);
+    line-height: 1.5;
+  }
+  .includes-item:last-child { border-bottom: none; }
+  .includes-check {
+    color: var(--accent);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* ---- NOTES ---- */
+  .note-box {
+    background: var(--accent-soft);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-bottom: 28px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .note-box svg {
+    width: 16px;
+    height: 16px;
+    color: var(--accent);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .note-box p {
+    font-size: 13px;
+    color: var(--accent);
+    line-height: 1.5;
+  }
+
+  /* ---- CTA ---- */
+  .cta-section { margin-top: 8px; }
+  .btn-primary {
+    display: block;
+    width: 100%;
+    padding: 16px;
+    background: var(--accent);
+    color: var(--bg);
+    border: none;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .btn-primary:hover { opacity: 0.9; }
+  .btn-secondary {
+    display: block;
+    width: 100%;
+    padding: 16px;
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    margin-top: 10px;
+    transition: all 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--text-dim); }
+  .showroom-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    margin-top: 28px;
+    padding: 18px 14px;
+    background: var(--accent-soft);
+    border-radius: 8px;
+    font-size: 13px;
+    color: var(--accent);
+    text-align: center;
+  }
+  .showroom-badge svg { width: 16px; height: 16px; flex-shrink: 0; }
+  .showroom-hours {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-top: 4px;
+  }
+
+  /* ---- CATALOG VIEW ---- */
+  .catalog-header {
+    padding: 50px 24px 30px;
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  .catalog-header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 34px;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    margin-bottom: 6px;
+  }
+  .catalog-header p {
+    font-size: 13px;
+    color: var(--text-dim);
+    letter-spacing: 1px;
+  }
+  .catalog-section-title {
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding: 20px 24px 12px;
+    max-width: 500px;
+    margin: 0 auto;
+    font-weight: 500;
+  }
+  .catalog-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    max-width: 500px;
+    margin: 0 auto 24px;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .catalog-card {
+    background: var(--surface);
+    padding: 16px;
+    cursor: pointer;
+    transition: background 0.2s;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  .catalog-card:hover { background: var(--surface-2); }
+  .catalog-card .card-img {
+    width: 100%;
+    aspect-ratio: 1;
+    background: linear-gradient(135deg, var(--surface-2) 0%, var(--bg) 100%);
+    border-radius: 8px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .catalog-card .card-img svg {
+    width: 32px;
+    height: 32px;
+    color: var(--border);
+  }
+  .catalog-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 3px;
+    line-height: 1.2;
+  }
+  .catalog-card .card-model {
+    font-size: 10px;
+    color: var(--text-dim);
+    font-family: monospace;
+    margin-bottom: 6px;
+  }
+  .catalog-card .card-watts {
+    font-size: 11px;
+    color: var(--accent);
+  }
+
+  /* Loading / Error */
+  .loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    gap: 16px;
+  }
+  .loading-spinner {
+    width: 32px;
+    height: 32px;
+    border: 2px solid var(--border);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading-text { font-size: 13px; color: var(--text-dim); }
+  .error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    padding: 24px;
+    gap: 12px;
+  }
+  .error h2 { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 24px; }
+  .error p { font-size: 14px; color: var(--text-dim); }
+  .error a { color: var(--accent); }
+
+  /* Animations */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(15px);
+    animation: fadeUp 0.5s ease forwards;
+  }
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+  .d1 { animation-delay: 0.05s; }
+  .d2 { animation-delay: 0.1s; }
+  .d3 { animation-delay: 0.15s; }
+  .d4 { animation-delay: 0.2s; }
+  .d5 { animation-delay: 0.25s; }
+  .d6 { animation-delay: 0.3s; }
+  .d7 { animation-delay: 0.35s; }
+</style>
 </head>
 <body>
-  <div class="container catalog-page">
 
-    <!-- Header -->
-    <header class="catalog-header fade-up">
-      <p class="company-label">Premier Lighting</p>
-      <div class="badge-row" style="margin-bottom: 16px;">
-        <span class="badge-category">Color Bridge Series</span>
-      </div>
-      <h1>Color Bridge Series</h1>
-      <p class="subtitle">Outdoor Track Lighting System</p>
-    </header>
-
-    <!-- Category Sections -->
-    
-    <section class="category-section fade-up">
-      <h2 class="category-heading">Track System Kits</h2>
-      <div class="card-grid">
-        
-        <a href="products/CB-KIT-10M.html" class="product-card">
-          <h3 class="card-name">Color Bridge 10M Power Kit</h3>
-          <p class="card-model">ODTZ-10-basic part</p>
-          <p class="card-spec">10 meters</p>
-        </a>
-        
-        <a href="products/CB-KIT-5M.html" class="product-card">
-          <h3 class="card-name">Color Bridge 5M Power Kit</h3>
-          <p class="card-model">ODTZ-05-basic part</p>
-          <p class="card-spec">5 meters</p>
-        </a>
-        
-      </div>
-    </section>
-    
-    <section class="category-section fade-up">
-      <h2 class="category-heading">Track & Accessories</h2>
-      <div class="card-grid">
-        
-        <a href="products/CB-TRACK-10M.html" class="product-card">
-          <h3 class="card-name">Flexible Track — 10 Meter Roll</h3>
-          <p class="card-model">DGX (10M)</p>
-          <p class="card-spec">10 meters / roll</p>
-        </a>
-        
-        <a href="products/CB-TRACK-5M.html" class="product-card">
-          <h3 class="card-name">Flexible Track — 5 Meter Roll</h3>
-          <p class="card-model">DGX (5M)</p>
-          <p class="card-spec">5 meters / roll</p>
-        </a>
-        
-        <a href="products/CB-STANDOFF.html" class="product-card">
-          <h3 class="card-name">Track Standoff Mount</h3>
-          <p class="card-model">GDJ</p>
-          <p class="card-spec">Ø20mm × H36mm</p>
-        </a>
-        
-        <a href="products/CB-ENDCAP.html" class="product-card">
-          <h3 class="card-name">Track End Cap</h3>
-          <p class="card-model">DC001</p>
-          <p class="card-spec">Silicone</p>
-        </a>
-        
-      </div>
-    </section>
-    
-    <section class="category-section fade-up">
-      <h2 class="category-heading">Drivers & Power</h2>
-      <div class="card-grid">
-        
-        <a href="products/CB-DRIVER-36W.html" class="product-card">
-          <h3 class="card-name">36W Waterproof Driver</h3>
-          <p class="card-model">36LZ</p>
-          <p class="card-spec">36W</p>
-        </a>
-        
-        <a href="products/CB-DRIVER-72W.html" class="product-card">
-          <h3 class="card-name">72W Waterproof Driver</h3>
-          <p class="card-model">72LZ</p>
-          <p class="card-spec">72W</p>
-        </a>
-        
-      </div>
-    </section>
-    
-    <section class="category-section fade-up">
-      <h2 class="category-heading">Color Bridge Fixtures</h2>
-      <div class="card-grid">
-        
-        <a href="products/CB-GLOBE-SM.html" class="product-card">
-          <h3 class="card-name">Globe Light — 4.7"</h3>
-          <p class="card-model">CQA-HW-YQYKL12-5W</p>
-          <p class="card-spec">5W / 370 lm</p>
-        </a>
-        
-        <a href="products/CB-GLOBE-MD.html" class="product-card">
-          <h3 class="card-name">Globe Light — 6"</h3>
-          <p class="card-model">CQA-HW-YQYKL15-5W</p>
-          <p class="card-spec">5W / 400 lm</p>
-        </a>
-        
-        <a href="products/CB-GLOBE-LG.html" class="product-card">
-          <h3 class="card-name">Globe Light — 7.8"</h3>
-          <p class="card-model">CQA-HW-YQYKL20-7W</p>
-          <p class="card-spec">7W / 500 lm</p>
-        </a>
-        
-        <a href="products/CB-TUBE-SM.html" class="product-card">
-          <h3 class="card-name">Linear Tube — 5ft (14W)</h3>
-          <p class="card-model">CQA-HW-G18-150-14W</p>
-          <p class="card-spec">14W / 800 lm</p>
-        </a>
-        
-        <a href="products/CB-TUBE-LG.html" class="product-card">
-          <h3 class="card-name">Linear Tube — 10ft (27W)</h3>
-          <p class="card-model">CQA-HW-G18-300-27W</p>
-          <p class="card-spec">27W / 1,550 lm</p>
-        </a>
-        
-        <a href="products/CB-SPOT-12W-W.html" class="product-card">
-          <h3 class="card-name">Cylinder Spotlight 12W — White</h3>
-          <p class="card-model">CQA-BJW-C-01</p>
-          <p class="card-spec">12W / 840 lm</p>
-        </a>
-        
-        <a href="products/CB-SPOT-12W-B.html" class="product-card">
-          <h3 class="card-name">Cylinder Spotlight 12W — Black</h3>
-          <p class="card-model">CQA-BJW-C-01</p>
-          <p class="card-spec">12W / 840 lm</p>
-        </a>
-        
-        <a href="products/CB-LINEAR-15W.html" class="product-card">
-          <h3 class="card-name">Flexible Linear Light — per meter</h3>
-          <p class="card-model">CQ-RXXTD-15W</p>
-          <p class="card-spec">15W / meter / 1,000 lm / m</p>
-        </a>
-        
-        <a href="products/CB-NARROW-10W.html" class="product-card">
-          <h3 class="card-name">Narrow Beam Spotlight 10W</h3>
-          <p class="card-model">CQA-SZ-10W</p>
-          <p class="card-spec">10W / 750 lm</p>
-        </a>
-        
-      </div>
-    </section>
-    
-    <section class="category-section fade-up">
-      <h2 class="category-heading">Decorative Fixtures</h2>
-      <div class="card-grid">
-        
-        <a href="products/CB-LANTERN-RND.html" class="product-card">
-          <h3 class="card-name">Decorative Lantern — Round</h3>
-          <p class="card-model">CQA-PC-D150-5.5W</p>
-          <p class="card-spec">5.5W / 245 lm</p>
-        </a>
-        
-        <a href="products/CB-LANTERN-SQ.html" class="product-card">
-          <h3 class="card-name">Decorative Lantern — Square</h3>
-          <p class="card-model">CQA-PC-F009-5.5W</p>
-          <p class="card-spec">5.5W / 245 lm</p>
-        </a>
-        
-        <a href="products/CB-LANTERN-GLOBE.html" class="product-card">
-          <h3 class="card-name">Decorative Lantern — Globe</h3>
-          <p class="card-model">CQA-PC-FB220-5.5W</p>
-          <p class="card-spec">5.5W / 245 lm</p>
-        </a>
-        
-      </div>
-    </section>
-    
-    <section class="category-section fade-up">
-      <h2 class="category-heading">LNT Track System</h2>
-      <div class="card-grid">
-        
-        <a href="products/LNT-MOUNT.html" class="product-card">
-          <h3 class="card-name">LNT Track Mount Rail</h3>
-          <p class="card-model">ZCHW-MZ-P-1000</p>
-          <p class="card-spec">27.8 × 31 × 1,220mm</p>
-        </a>
-        
-        <a href="products/LNT-CLIP.html" class="product-card">
-          <h3 class="card-name">LNT Track Fixing Clip</h3>
-          <p class="card-model">TS15-DT</p>
-          <p class="card-spec">56.5 × 27.8 × 31mm</p>
-        </a>
-        
-      </div>
-    </section>
-    
-    <section class="category-section fade-up">
-      <h2 class="category-heading">LNT Track Fixtures</h2>
-      <div class="card-grid">
-        
-        <a href="products/LNT-DOWNLIGHT-12W.html" class="product-card">
-          <h3 class="card-name">LNT Square Downlight 12W</h3>
-          <p class="card-model">LNT-DT-12W</p>
-          <p class="card-spec">12W / 830 lm</p>
-        </a>
-        
-        <a href="products/LNT-DUAL-14W.html" class="product-card">
-          <h3 class="card-name">LNT Dual Spot 7W×2</h3>
-          <p class="card-model">LNT-ST-7W*2</p>
-          <p class="card-spec">14W (7W × 2) / 850 lm total</p>
-        </a>
-        
-        <a href="products/LNT-NARROW-10W.html" class="product-card">
-          <h3 class="card-name">LNT Narrow Beam 10W</h3>
-          <p class="card-model">LNT-SZ-10W</p>
-          <p class="card-spec">10W / 750 lm</p>
-        </a>
-        
-        <a href="products/LNT-WALL-12W.html" class="product-card">
-          <h3 class="card-name">LNT Wall Washer 12W</h3>
-          <p class="card-model">LNT-XMY-12W</p>
-          <p class="card-spec">12W / 850 lm</p>
-        </a>
-        
-        <a href="products/LNT-SPOT-12W.html" class="product-card">
-          <h3 class="card-name">LNT Cylinder Spotlight 12W</h3>
-          <p class="card-model">LNT-BJW-C-01</p>
-          <p class="card-spec">12W / 840 lm</p>
-        </a>
-        
-      </div>
-    </section>
-    
-
-    <!-- Showroom Footer -->
-    <div class="showroom-badge fade-up">
-      <div class="showroom-icon">&#128205;</div>
-      <p class="showroom-name">Premier Lighting</p>
-      <p class="showroom-address">2050 S. 16th St. Suite 111, Phoenix AZ 85034</p>
-      <p class="showroom-hours">Mon–Thu 8AM–2PM, by appointment</p>
-      <p class="showroom-phone"><a href="tel:+16023395130">(602) 339-5130</a></p>
-    </div>
-
+<div id="app">
+  <div class="loading">
+    <div class="loading-spinner"></div>
+    <div class="loading-text">Loading product...</div>
   </div>
+</div>
+
+<script>
+// ============================================================
+// PRODUCT CATALOG — Color Bridge Series Outdoor Track System
+// Source: PI-PLL20241212-V1
+//
+// HOW TO ADD/EDIT PRODUCTS:
+// 1. Add a new entry to the PRODUCTS object below
+// 2. The key (e.g. "CB-001") becomes the QR code ID
+// 3. QR code URL: yoursite.com/?id=CB-001
+// ============================================================
+
+const PRODUCTS = {
+
+  // ========== TRACK SYSTEM KITS ==========
+
+  "CB-KIT-10M": {
+    name: "Color Bridge 10M Power Kit",
+    category: "Track System Kits",
+    model: "ODTZ-10-basic part",
+    description: "Complete 10-meter outdoor track system kit. Everything you need to power a full Color Bridge track run \u2014 includes the flexible silicone track, mounting standoffs, and a waterproof 72W LED driver. Ideal for long residential runs, perimeter lighting, or commercial facades.",
+    includes: [
+      "10-Meter Color Bridge flexible track",
+      "8\u00d7 soft track standoff mounts",
+      "72W waterproof LED driver (IP67)"
+    ],
+    specs: {
+      "Track Length": "10 meters",
+      "Material": "Silicone + Aluminum",
+      "Voltage": "DC 24V",
+      "IP Rating": "IP65",
+      "Driver Output": "72W / 3A",
+      "Input Voltage": "100\u2013130V AC"
+    },
+    images: ["images/CB-TRACK-Black.jpg", "images/CB-STANDOFF.jpg", "images/CB-DRIVER-72W.jpg"]
+  },
+
+  "CB-KIT-5M": {
+    name: "Color Bridge 5M Power Kit",
+    category: "Track System Kits",
+    model: "ODTZ-05-basic part",
+    description: "Complete 5-meter outdoor track system kit. Compact version of the Color Bridge system for shorter runs \u2014 patios, garden walls, or accent sections. Includes track, standoffs, and 36W waterproof driver.",
+    includes: [
+      "5-Meter Color Bridge flexible track",
+      "4\u00d7 soft track standoff mounts",
+      "36W waterproof LED driver (IP67)"
+    ],
+    specs: {
+      "Track Length": "5 meters",
+      "Material": "Silicone + Aluminum",
+      "Voltage": "DC 24V",
+      "IP Rating": "IP65",
+      "Driver Output": "36W / 1.5A",
+      "Input Voltage": "100\u2013130V AC"
+    },
+    images: ["images/CB-TRACK-Black.jpg", "images/CB-STANDOFF.jpg", "images/CB-DRIVER-36W.jpg"]
+  },
+
+  // ========== TRACK & ACCESSORIES ==========
+
+  "CB-TRACK-10M": {
+    name: "Flexible Track \u2014 10 Meter Roll",
+    category: "Track & Accessories",
+    model: "DGX (10M)",
+    description: "Standalone 10-meter roll of Color Bridge flexible silicone track. Use for extending existing systems or custom-length runs. The silicone construction allows gentle curves and contours around architectural features.",
+    note: "Available in 6 colors: Black, Blue, Green, Red, Yellow, Gray",
+    specs: {
+      "Length": "10 meters / roll",
+      "Material": "Silicone",
+      "Voltage": "DC 24V",
+      "IP Rating": "IP65",
+      "Flexibility": "Curves & contours"
+    },
+    images: ["images/CB-TRACK-Black.jpg", "images/CB-TRACK-Blue.jpg", "images/CB-TRACK-Green.jpg", "images/CB-TRACK-Red.jpg", "images/CB-TRACK-Yellow.jpg", "images/CB-TRACK-Gray.jpg"]
+  },
+
+  "CB-TRACK-5M": {
+    name: "Flexible Track \u2014 5 Meter Roll",
+    category: "Track & Accessories",
+    model: "DGX (5M)",
+    description: "Standalone 5-meter roll of Color Bridge flexible silicone track. Perfect for shorter extensions, accent sections, or tighter installations where a full 10-meter roll isn't needed.",
+    note: "Available in 6 colors: Black, Blue, Green, Red, Yellow, Gray",
+    specs: {
+      "Length": "5 meters / roll",
+      "Material": "Silicone",
+      "Voltage": "DC 24V",
+      "IP Rating": "IP65",
+      "Flexibility": "Curves & contours"
+    },
+    images: ["images/CB-TRACK-Black.jpg", "images/CB-TRACK-Blue.jpg", "images/CB-TRACK-Green.jpg", "images/CB-TRACK-Red.jpg", "images/CB-TRACK-Yellow.jpg", "images/CB-TRACK-Gray.jpg"]
+  },
+
+  "CB-STANDOFF": {
+    name: "Track Standoff Mount",
+    category: "Track & Accessories",
+    model: "GDJ",
+    description: "Aluminum standoff mounting bracket for the Color Bridge track system. Creates a clean, floating look by spacing the track away from the mounting surface. Allows airflow behind the track for optimal thermal performance.",
+    specs: {
+      "Size": "\u00d820mm \u00d7 H36mm",
+      "Material": "Aluminum",
+      "IP Rating": "IP65",
+      "Sold": "Per piece"
+    },
+    images: ["images/CB-STANDOFF.jpg"]
+  },
+
+  "CB-ENDCAP": {
+    name: "Track End Cap",
+    category: "Track & Accessories",
+    model: "DC001",
+    description: "Silicone end cap for sealing the open ends of Color Bridge flexible track. Maintains the IP65 waterproof rating of the system and provides a clean finished look.",
+    specs: {
+      "Material": "Silicone",
+      "IP Rating": "IP65",
+      "Compatibility": "DGX Track",
+      "Sold": "Per piece"
+    },
+    images: ["images/CB-ENDCAP.png"]
+  },
+
+  // ========== DRIVERS ==========
+
+  "CB-DRIVER-36W": {
+    name: "36W Waterproof Driver",
+    category: "Drivers & Power",
+    model: "36LZ",
+    description: "36W waterproof LED driver for the Color Bridge track system. Rated IP67 for full outdoor exposure. Powers up to 5 meters of track with fixtures. Designed for 100\u2013130V AC input (North American standard).",
+    specs: {
+      "Wattage": "36W",
+      "Output": "DC 24V / 1.5A",
+      "Input": "100\u2013130V AC",
+      "IP Rating": "IP67",
+      "Max Track": "~5 meters"
+    },
+    images: ["images/CB-DRIVER-36W.jpg"]
+  },
+
+  "CB-DRIVER-72W": {
+    name: "72W Waterproof Driver",
+    category: "Drivers & Power",
+    model: "72LZ",
+    description: "72W waterproof LED driver for the Color Bridge track system. IP67 rated for complete weather protection. Powers up to 10 meters of track with fixtures. Designed for 100\u2013130V AC input (North American standard).",
+    specs: {
+      "Wattage": "72W",
+      "Output": "DC 24V / 3A",
+      "Input": "100\u2013130V AC",
+      "IP Rating": "IP67",
+      "Max Track": "~10 meters"
+    },
+    images: ["images/CB-DRIVER-72W.jpg"]
+  },
+
+  // ========== GLOBE / SPHERE LIGHTS ==========
+
+  "CB-GLOBE-SM": {
+    name: 'Globe Light \u2014 4.7"',
+    category: "Color Bridge Fixtures",
+    model: "CQA-HW-YQYKL12-5W",
+    description: "Small decorative globe light for the Color Bridge track system. 360\u00b0 omnidirectional warm white glow wrapped in a frosted PMMA diffuser. Creates an elegant floating orb effect along your track. High CRI \u226590 for true color rendering.",
+    specs: {
+      "Wattage": "5W",
+      "Size": "\u00d8120 \u00d7 H120mm",
+      "Material": "Aluminum + PMMA",
+      "Lumens": "370 lm",
+      "CCT": "3000K Warm",
+      "CRI": "Ra \u2265 90",
+      "Beam": "360\u00b0 Omni",
+      "LED": "Sanan Chip",
+      "Voltage": "DC 24V",
+      "IP Rating": "IP65"
+    },
+    images: ["images/CB-GLOBE.jpg"]
+  },
+
+  "CB-GLOBE-MD": {
+    name: 'Globe Light \u2014 6"',
+    category: "Color Bridge Fixtures",
+    model: "CQA-HW-YQYKL15-5W",
+    description: "Medium decorative globe light for the Color Bridge track. Same beautiful 360\u00b0 glow as the small version, with a larger 6-inch diameter for more visual impact. Perfect as a primary feature element along walkways and garden paths.",
+    specs: {
+      "Wattage": "5W",
+      "Size": "\u00d8154 \u00d7 H158mm",
+      "Material": "Aluminum + PMMA",
+      "Lumens": "400 lm",
+      "CCT": "3000K Warm",
+      "CRI": "Ra \u2265 90",
+      "Beam": "360\u00b0 Omni",
+      "LED": "Sanan Chip",
+      "Voltage": "DC 24V",
+      "IP Rating": "IP65"
+    },
+    images: ["images/CB-GLOBE.jpg"]
+  },
+
+  "CB-GLOBE-LG": {
+    name: 'Globe Light \u2014 7.8"',
+    category: "Color Bridge Fixtures",
+    model: "CQA-HW-YQYKL20-7W",
+    description: "Large decorative globe light for the Color Bridge track. The biggest sphere in the series at nearly 8 inches \u2014 a bold statement piece. Higher 7W output provides 500 lumens of warm ambient light. Stunning on entry columns or garden centerpieces.",
+    specs: {
+      "Wattage": "7W",
+      "Size": "\u00d8197 \u00d7 H202mm",
+      "Material": "Aluminum + PMMA",
+      "Lumens": "500 lm",
+      "CCT": "3000K Warm",
+      "CRI": "Ra \u2265 90",
+      "Beam": "360\u00b0 Omni",
+      "LED": "Sanan Chip",
+      "Voltage": "DC 24V",
+      "IP Rating": "IP65"
+    },
+    images: ["images/CB-GLOBE.jpg"]
+  },
+
+  // ========== TUBE / LINEAR LIGHTS ==========
+
+  "CB-TUBE-SM": {
+    name: "Linear Tube \u2014 5' (14W)",
+    category: "Color Bridge Fixtures",
+    model: "CQA-HW-G18-150-14W",
+    description: "5-foot illuminated tube fixture for the Color Bridge track. Sleek cylindrical form with 360\u00b0 light output creates a dramatic floating light bar effect. Aluminum core with silicone diffuser for even, glare-free illumination along the track.",
+    specs: {
+      "Wattage": "14W",
+      "Size": "\u00d826 \u00d7 1,570mm",
+      "Material": "Aluminum + Silicon",
+      "Lumens": "800 lm",
+      "CCT": "3000K Warm",
+      "CRI": "Ra \u2265 90",
+      "Beam": "360\u00b0 Omni",
+      "LED": "Sanan Chip",
+      "Voltage": "DC 24V",
+      "IP Rating": "IP65"
+    },
+    images: ["images/CB-TUBE.jpg"]
+  },
+
+  "CB-TUBE-LG": {
+    name: "Linear Tube \u2014 10' (27W)",
+    category: "Color Bridge Fixtures",
+    model: "CQA-HW-G18-300-27W",
+    description: "10-foot illuminated tube fixture for the Color Bridge track. The extended version delivers a dramatic 3-meter continuous glow with 1,550 lumens. Creates stunning visual lines for large-scale architectural and landscape applications.",
+    specs: {
+      "Wattage": "27W",
+      "Size": "\u00d826 \u00d7 3,070mm",
+      "Material": "Aluminum + Silicon",
+      "Lumens": "1,550 lm",
+      "CCT": "3000K Warm",
+      "CRI": "Ra \u2265 90",
+      "Beam": "360\u00b0 Omni",
+      "LED": "Sanan Chip",
+      "Voltage": "DC 24V",
+      "IP Rating": "IP65"
+    },
+    images: ["images/CB-TUBE.jpg"]
+  },
+
+  // ========== SPOTLIGHTS (Color Bridge) ==========
+
+  "CB-SPOT-12W-W": {
+    name: "Cylinder Spotlight 12W \u2014 White",
+    category: "Color Bridge Fixtures",
+    model: "CQA-BJW-C-01",
+    description: "Directional 12W cylinder spotlight for the Color Bridge track. 36\u00b0 focused beam powered by premium Osram LED chips. White aluminum body with precision lens optics. Ideal for highlighting landscape features, signage, or architectural details.",
+    note: "White finish",
+    specs: {
+      "Wattage": "12W",
+      "Size": "\u00d891 \u00d7 97.5mm",
+      "Material": "Aluminum + Lens",
+      "Lumens": "840 lm",
+      "CCT": "3000K Warm",
+      "CRI": "Ra \u2265 90",
+      "Beam Angle": "36\u00b0",
+      "LED": "Osram Chip",
+      "Voltage": "DC 24V",
+      "IP Rating": "IP65"
+    },
+    images: ["images/CB-SPOT-12W-W.jpg"]
+  },
+
+  "CB-SPOT-12W-B": {
+    name: "Cylinder Spotlight 12W \u2014 Black",
+    category: "Color Bridge Fixtures",
+    model: "CQA-BJW-C-01",
+    description: "Directional 12W cylinder spotlight for the Color Bridge track. Same premium optics as the white version in a discreet black finish that disappears at night. 36\u00b0 beam with Osram chips for precise accent lighting.",
+    note: "Black finish",
+    specs: {
+      "Wattage": "12W",
+      "Size": "\u00d891 \u00d7 97.5mm",
+      "Material": "Aluminum + Lens",
+      "Lumens": "840 lm",
+      "CCT": "3000K Warm",
+      "CRI": "Ra \u2265 90",
+      "Beam Angle": "36\u00b0",
+      "LED": "Osram Chip",
+      "Voltage": "DC 24V",
+      "IP Rating": "IP65"
+    },
+    images: ["images/CB-SPOT-12W-B.jpg"]
+  },
+
+  // ========== FLEXIBLE LINEAR ==========
+
+  "CB-LINEAR-15W": {
+    name: "Flexible Linear Light \u2014 per meter",
+    category: "Color Bridge Fixtures",
+    model: "CQ-RXXTD-15W",
+    description: "Continuous flexible LED linear light for the Color Bridge track system. 15W per meter with 1,000 lumens output. Encased in a waterproof silicone housing that bends with the track. Creates seamless lines of warm white light.",
+    note: "Priced per meter",
+    specs: {
+      "Wattage": "15W / meter",
+      "Size": "12.7 \u00d7 12.4 \u00d7 1,000mm",
+      "Material": "Silicone",
+      "Lumens": "1,000 lm / m",
+      "CCT": "3000K Warm",
+      "CRI": "Ra \u2265 90",
+      "Voltage": "DC 24V",
+      "IP Rating": "IP65"
+    },
+    images: ["images/CB-LINEAR-15W.jpg"]
+  },
+
+  // ========== NARROW BEAM SPOTLIGHT ==========
+
+  "CB-NARROW-10W": {
+    name: "Narrow Beam Spotlight 10W",
+    category: "Color Bridge Fixtures",
+    model: "CQA-SZ-10W",
+    description: "Ultra-narrow 15\u00b0 beam spotlight for the Color Bridge track. Armoured glass lens with Osram LED chips delivers a tight, punchy beam for dramatic accent effects. Ideal for highlighting trees, sculptures, or water features from the track.",
+    note: "Black finish",
+    specs: {
+      "Wattage": "10W",
+      "Size": "156 \u00d7 38 \u00d7 75mm",
+      "Material": "Aluminum + Armoured Glass",
+      "Lumens": "750 lm",
+      "CCT": "3000K Warm",
+      "CRI": "Ra \u2265 90",
+      "Beam Angle": "15\u00b0 Narrow",
+      "LED": "Osram Chip",
+      "Voltage": "DC 24V",
+      "IP Rating": "IP65"
+    },
+    images: ["images/CB-NARROW-10W.jpg"]
+  },
+
+  // ========== DECORATIVE LANTERNS ==========
+
+  "CB-LANTERN-RND": {
+    name: "Decorative Lantern \u2014 Round",
+    category: "Decorative Fixtures",
+    model: "CQA-PC-D150-5.5W",
+    description: "Round decorative PC lantern for the Color Bridge track. Warm 2200K amber glow mimics traditional flame lighting for a cozy, inviting atmosphere. The polycarbonate diffuser provides even, soft illumination safe for outdoor use.",
+    specs: {
+      "Wattage": "5.5W",
+      "Size": "\u00d8150 \u00d7 H260mm",
+      "Material": "PC + Aluminum",
+      "Lumens": "245 lm",
+      "CCT": "2200K Amber",
+      "CRI": "Ra \u2265 90",
+      "Beam": "Omnidirectional",
+      "Voltage": "DC 24V",
+      "IP Rating": "IP65"
+    },
+    images: ["images/CB-LANTERN-RND.jpg"]
+  },
+
+  "CB-LANTERN-SQ": {
+    name: "Decorative Lantern \u2014 Square",
+    category: "Decorative Fixtures",
+    model: "CQA-PC-F009-5.5W",
+    description: "Square decorative PC lantern for the Color Bridge track. Same warm 2200K amber glow as the round version in a geometric square form. Adds a modern twist to traditional lantern aesthetics along your outdoor track.",
+    specs: {
+      "Wattage": "5.5W",
+      "Size": "130 \u00d7 130 \u00d7 H300mm",
+      "Material": "PC + Aluminum",
+      "Lumens": "245 lm",
+      "CCT": "2200K Amber",
+      "CRI": "Ra \u2265 90",
+      "Beam": "Omnidirectional",
+      "Voltage": "DC 24V",
+      "IP Rating": "IP65"
+    },
+    images: ["images/CB-LANTERN-SQ.jpg"]
+  },
+
+  "CB-LANTERN-GLOBE": {
+    name: "Decorative Lantern \u2014 Globe",
+    category: "Decorative Fixtures",
+    model: "CQA-PC-FB220-5.5W",
+    description: "Large globe decorative PC lantern for the Color Bridge track. The biggest decorative option at 8 inches wide with a warm 2200K amber glow. Beautiful as a statement piece on patios, pergolas, and garden paths.",
+    specs: {
+      "Wattage": "5.5W",
+      "Size": "\u00d8200 \u00d7 H270mm",
+      "Material": "PC + Aluminum",
+      "Lumens": "245 lm",
+      "CCT": "2200K Amber",
+      "CRI": "Ra \u2265 90",
+      "Beam": "Omnidirectional",
+      "Voltage": "DC 24V",
+      "IP Rating": "IP65"
+    },
+    images: ["images/CB-LANTERN-GLOBE.jpg"]
+  },
+
+  // ========== LNT TRACK SYSTEM ==========
+
+  "LNT-MOUNT": {
+    name: "LNT Track Mount Rail",
+    category: "LNT Track System",
+    model: "ZCHW-MZ-P-1000",
+    description: "PVC mounting rail for the LNT rigid track system. 1.2-meter sections that provide a solid mounting base for LNT track fixtures. Designed for straight-line architectural applications where the flexibility of the Color Bridge track isn't needed.",
+    specs: {
+      "Size": "27.8 \u00d7 31 \u00d7 1,220mm",
+      "Material": "PVC",
+      "IP Rating": "IP65",
+      "Type": "Rigid mount"
+    },
+    images: ["images/LNT-MOUNT.jpg"]
+  },
+
+  "LNT-CLIP": {
+    name: "LNT Track Fixing Clip",
+    category: "LNT Track System",
+    model: "TS15-DT",
+    description: "Fixing clip accessory for securing fixtures tightly to the Color Bridge / LNT track system. Polycarbonate construction with tool-free snap-in installation.",
+    specs: {
+      "Size": "56.5 \u00d7 27.8 \u00d7 31mm",
+      "Material": "Polycarbonate",
+      "IP Rating": "IP65",
+      "Type": "Track fixing clip"
+    },
+    images: ["images/LNT-CLIP.png"]
+  },
+
+  // ========== LNT TRACK FIXTURES ==========
+
+  "LNT-DOWNLIGHT-12W": {
+    name: "LNT Square Downlight 12W",
+    category: "LNT Track Fixtures",
+    model: "LNT-DT-12W",
+    description: "Square-face 12W downlight for the LNT track system. Compact aluminum body with Osram LED chips and 36\u00b0 beam angle. Perfect for overhead task lighting or pathway illumination from rigid track installations.",
+    specs: {
+      "Wattage": "12W",
+      "Size": "124 \u00d7 124 \u00d7 83.5mm",
+      "Material": "Aluminum",
+      "Lumens": "830 lm",
+      "CCT": "3000K Warm",
+      "CRI": "Ra \u2265 90",
+      "Beam Angle": "36\u00b0",
+      "LED": "Osram Chip",
+      "Voltage": "DC 24V",
+      "IP Rating": "IP65"
+    },
+    images: ["images/LNT-DOWNLIGHT-12W.jpg"]
+  },
+
+  "LNT-DUAL-14W": {
+    name: "LNT Dual Spot 7W\u00d72",
+    category: "LNT Track Fixtures",
+    model: "LNT-ST-7W*2",
+    description: "Dual-head spotlight for the LNT track system. Two independently adjustable 7W heads on a single track mount \u2014 illuminate two features from one fixture. Osram LED chips with 36\u00b0 beam for precise accent control.",
+    specs: {
+      "Wattage": "14W (7W \u00d7 2)",
+      "Size": "161.5 \u00d7 60 \u00d7 97mm",
+      "Material": "Aluminum",
+      "Lumens": "850 lm total",
+      "CCT": "3000K Warm",
+      "CRI": "Ra \u2265 90",
+      "Beam Angle": "36\u00b0",
+      "LED": "Osram Chip",
+      "Voltage": "DC 24V",
+      "IP Rating": "IP65"
+    },
+    images: ["images/LNT-DUAL-14W.png"]
+  },
+
+  "LNT-NARROW-10W": {
+    name: "LNT Narrow Beam 10W",
+    category: "LNT Track Fixtures",
+    model: "LNT-SZ-10W",
+    description: "Narrow 15\u00b0 beam spotlight for the LNT track system. Armoured glass lens version designed for tight, dramatic accent beams. Larger body than the Color Bridge version for improved heat dissipation on rigid track installations.",
+    specs: {
+      "Wattage": "10W",
+      "Size": "230 \u00d7 38 \u00d7 75mm",
+      "Material": "Aluminum + Armoured Glass",
+      "Lumens": "750 lm",
+      "CCT": "3000K Warm",
+      "CRI": "Ra \u2265 90",
+      "Beam Angle": "15\u00b0 Narrow",
+      "LED": "Osram Chip",
+      "Voltage": "DC 24V",
+      "IP Rating": "IP65"
+    },
+    images: ["images/LNT-NARROW-10W.jpg"]
+  },
+
+  "LNT-WALL-12W": {
+    name: "LNT Wall Washer 12W",
+    category: "LNT Track Fixtures",
+    model: "LNT-XMY-12W",
+    description: "Wall wash fixture for the LNT track system. Wider aluminum body designed for smooth, even wall washing effects. 36\u00b0 beam spread from Osram chips \u2014 great for illuminating textured walls, fences, and flat surfaces.",
+    specs: {
+      "Wattage": "12W",
+      "Size": "230 \u00d7 100 \u00d7 90mm",
+      "Material": "Aluminum",
+      "Lumens": "850 lm",
+      "CCT": "3000K Warm",
+      "CRI": "Ra \u2265 90",
+      "Beam Angle": "36\u00b0",
+      "LED": "Osram Chip",
+      "Voltage": "DC 24V",
+      "IP Rating": "IP65"
+    },
+    images: ["images/LNT-WALL-12W.jpg"]
+  },
+
+  "LNT-SPOT-12W": {
+    name: "LNT Cylinder Spotlight 12W",
+    category: "LNT Track Fixtures",
+    model: "LNT-BJW-C-01",
+    description: "Cylinder spotlight for the LNT track system. Same premium Osram-powered optics as the Color Bridge version, adapted for the LNT rigid track mount. 36\u00b0 beam in a compact cylindrical form.",
+    specs: {
+      "Wattage": "12W",
+      "Size": "\u00d891 \u00d7 97.5mm",
+      "Material": "Aluminum + Lens",
+      "Lumens": "840 lm",
+      "CCT": "3000K Warm",
+      "CRI": "Ra \u2265 90",
+      "Beam Angle": "36\u00b0",
+      "LED": "Osram Chip",
+      "Voltage": "DC 24V",
+      "IP Rating": "IP65"
+    },
+    images: ["images/LNT-SPOT-12W.png"]
+  }
+};
+
+// ============================================================
+// SHOWROOM CONTACT
+// ============================================================
+const CONTACT = {
+  phone: "(602) 339-5130",
+  email: "",
+  showroom: "Premier Lighting \u2014 2050 S. 16th St. Suite 111, Phoenix AZ 85034",
+  hours: "Mon\u2013Thu 8am\u20132pm by appointment"
+};
+
+// ============================================================
+// CATEGORY DISPLAY ORDER
+// ============================================================
+const CATEGORY_ORDER = [
+  "Track System Kits",
+  "Track & Accessories",
+  "Drivers & Power",
+  "Color Bridge Fixtures",
+  "Decorative Fixtures",
+  "LNT Track System",
+  "LNT Track Fixtures"
+];
+
+// ============================================================
+// ICONS
+// ============================================================
+const ICONS = {
+  light: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>',
+  back: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>',
+  pin: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/></svg>',
+  check: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>',
+  info: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>',
+  photo: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>'
+};
+
+// ============================================================
+// RENDERING
+// ============================================================
+
+function getProductId() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get('id');
+}
+
+function renderProduct(product, productId) {
+  const app = document.getElementById('app');
+  const specEntries = Object.entries(product.specs);
+  const hasImages = product.images && product.images.length > 0;
+
+  let galleryHTML;
+  if (hasImages) {
+    galleryHTML = `
+      <div class="gallery" id="gallery">
+        <a href="?catalog" class="back-btn">${ICONS.back}</a>
+        <div class="gallery-track" id="galleryTrack">
+          ${product.images.map(img => `<div class="gallery-slide"><img src="${img}" alt="${product.name}" loading="lazy"></div>`).join('')}
+        </div>
+        <div class="gallery-dots" id="galleryDots">
+          ${product.images.map((_, i) => `<button class="gallery-dot ${i === 0 ? 'active' : ''}" data-index="${i}"></button>`).join('')}
+        </div>
+        <div class="gallery-counter"><span id="slideNum">1</span> / ${product.images.length}</div>
+      </div>`;
+  } else {
+    galleryHTML = `
+      <div class="gallery">
+        <a href="?catalog" class="back-btn">${ICONS.back}</a>
+        <div class="placeholder-img">
+          ${ICONS.photo}
+          <span>Photo coming soon</span>
+        </div>
+      </div>`;
+  }
+
+  let includesHTML = '';
+  if (product.includes) {
+    includesHTML = `
+      <div class="includes-box fade-up d4">
+        <h3>Kit Includes</h3>
+        ${product.includes.map(item => `
+          <div class="includes-item">
+            <span class="includes-check">${ICONS.check}</span>
+            <span>${item}</span>
+          </div>
+        `).join('')}
+      </div>`;
+  }
+
+  let noteHTML = '';
+  if (product.note) {
+    noteHTML = `
+      <div class="note-box fade-up d4">
+        ${ICONS.info}
+        <p>${product.note}</p>
+      </div>`;
+  }
+
+  app.innerHTML = `
+    ${galleryHTML}
+    <div class="content">
+      <div class="category-badge fade-up">${product.category}</div>
+      <h1 class="product-name fade-up d1">${product.name}</h1>
+      <div class="product-model fade-up d1">${product.model} &nbsp;|&nbsp; ID: ${productId}</div>
+
+      <div class="tag-row fade-up d2">
+        ${product.specs['IP Rating'] ? `<span class="tag highlight">${product.specs['IP Rating']}</span>` : ''}
+        ${product.specs['Voltage'] || product.specs['Output'] ? `<span class="tag">${product.specs['Voltage'] || product.specs['Output']}</span>` : ''}
+        ${product.specs['Wattage'] ? `<span class="tag">${product.specs['Wattage']}</span>` : ''}
+        ${product.specs['CCT'] ? `<span class="tag">${product.specs['CCT']}</span>` : ''}
+        ${product.specs['CRI'] ? `<span class="tag">${product.specs['CRI']}</span>` : ''}
+      </div>
+
+      <div class="divider fade-up d2"></div>
+      <p class="description fade-up d3">${product.description}</p>
+      ${includesHTML}
+      ${noteHTML}
+
+      <div class="specs-title fade-up d5">Full Specifications</div>
+      <div class="specs-grid fade-up d5">
+        ${specEntries.map(([key, val]) => `
+          <div class="spec-item">
+            <div class="spec-label">${key}</div>
+            <div class="spec-value">${val}</div>
+          </div>
+        `).join('')}
+      </div>
+
+      <div class="cta-section fade-up d6">
+        <a href="tel:${CONTACT.phone}" class="btn-primary">Call Showroom</a>
+        <a href="tel:${CONTACT.phone}" class="btn-secondary">Contact for Quote</a>
+      </div>
+
+      <div class="showroom-badge fade-up d7">
+        ${ICONS.pin}
+        <span>${CONTACT.showroom}</span>
+        <span class="showroom-hours">${CONTACT.hours}</span>
+      </div>
+    </div>
+  `;
+
+  if (hasImages && product.images.length > 1) initGallery(product.images.length);
+}
+
+function renderCatalog() {
+  const app = document.getElementById('app');
+  const grouped = {};
+
+  for (const [id, p] of Object.entries(PRODUCTS)) {
+    if (!grouped[p.category]) grouped[p.category] = [];
+    grouped[p.category].push({ id, ...p });
+  }
+
+  let sectionsHTML = '';
+  for (const cat of CATEGORY_ORDER) {
+    if (!grouped[cat]) continue;
+    sectionsHTML += `
+      <div class="catalog-section-title">${cat}</div>
+      <div class="catalog-grid">
+        ${grouped[cat].map(p => `
+          <a href="?id=${p.id}" class="catalog-card">
+            <div class="card-img">
+              ${p.images && p.images.length > 0
+                ? `<img src="${p.images[0]}" alt="${p.name}" style="width:100%;height:100%;object-fit:contain;border-radius:8px;">`
+                : ICONS.light
+              }
+            </div>
+            <h3>${p.name}</h3>
+            <div class="card-model">${p.model}</div>
+            <div class="card-watts">${p.specs.Wattage || p.specs['Track Length'] || p.specs.Type || ''}</div>
+          </a>
+        `).join('')}
+      </div>`;
+  }
+
+  app.innerHTML = `
+    <div class="catalog-header">
+      <div class="category-badge" style="margin-bottom:16px">Color Bridge Series</div>
+      <h1>Outdoor Track System</h1>
+      <p>Tap a product to view full details</p>
+    </div>
+    ${sectionsHTML}
+    <div style="padding:24px;text-align:center;">
+      <div class="showroom-badge">
+        ${ICONS.pin}
+        <span>${CONTACT.showroom}</span>
+        <span class="showroom-hours">${CONTACT.hours}</span>
+      </div>
+    </div>
+  `;
+}
+
+function renderError(id) {
+  document.getElementById('app').innerHTML = `
+    <div class="error">
+      <h2>Product Not Found</h2>
+      <p>No product with ID "${id}" was found.<br>Please ask a showroom associate for help.</p>
+      <a href="?catalog">Browse full catalog &rarr;</a>
+    </div>
+  `;
+}
+
+function initGallery(count) {
+  const track = document.getElementById('galleryTrack');
+  const dots = document.querySelectorAll('.gallery-dot');
+  const counter = document.getElementById('slideNum');
+  const gallery = document.getElementById('gallery');
+  let current = 0, startX = 0, isDragging = false;
+
+  function goTo(i) {
+    current = Math.max(0, Math.min(count - 1, i));
+    track.style.transform = 'translateX(-' + (current * 100) + '%)';
+    dots.forEach((d, j) => d.classList.toggle('active', j === current));
+    counter.textContent = current + 1;
+  }
+  dots.forEach(d => d.addEventListener('click', () => goTo(+d.dataset.index)));
+  gallery.addEventListener('touchstart', e => { startX = e.touches[0].clientX; isDragging = true; }, { passive: true });
+  gallery.addEventListener('touchend', e => {
+    if (!isDragging) return;
+    const diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) goTo(current + (diff > 0 ? 1 : -1));
+    isDragging = false;
+  }, { passive: true });
+}
+
+// ============================================================
+// ROUTER
+// ============================================================
+const params = new URLSearchParams(window.location.search);
+const productId = params.get('id');
+const showCatalog = params.has('catalog') || (!productId && !params.has('id'));
+
+setTimeout(() => {
+  if (showCatalog || !productId) {
+    renderCatalog();
+  } else if (PRODUCTS[productId]) {
+    renderProduct(PRODUCTS[productId], productId);
+  } else {
+    renderError(productId);
+  }
+}, 300);
+</script>
 </body>
 </html>
