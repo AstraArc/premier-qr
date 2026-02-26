@@ -157,6 +157,12 @@
     line-height: 1.2;
     margin-bottom: 4px;
   }
+  .product-price {
+    font-size: 28px;
+    font-weight: 500;
+    color: #4caf50;
+    margin: 8px 0 4px;
+  }
   .product-model {
     font-size: 12px;
     color: var(--text-dim);
@@ -421,6 +427,12 @@
     margin-bottom: 3px;
     line-height: 1.2;
   }
+  .catalog-card .card-price {
+    font-size: 15px;
+    font-weight: 500;
+    color: #4caf50;
+    margin-bottom: 2px;
+  }
   .catalog-card .card-model {
     font-size: 10px;
     color: var(--text-dim);
@@ -507,6 +519,7 @@ const PRODUCTS = {
 
   "CB-KIT-10M": {
     name: "Color Bridge 10M Power Kit",
+    price: 123,
     category: "Track System Kits",
     model: "ODTZ-10-basic part",
     description: "Complete 10-meter outdoor track system kit. Everything you need to power a full Color Bridge track run \u2014 includes the flexible silicone track, mounting standoffs, and a waterproof 72W LED driver. Ideal for long residential runs, perimeter lighting, or commercial facades.",
@@ -528,6 +541,7 @@ const PRODUCTS = {
 
   "CB-KIT-5M": {
     name: "Color Bridge 5M Power Kit",
+    price: 71,
     category: "Track System Kits",
     model: "ODTZ-05-basic part",
     description: "Complete 5-meter outdoor track system kit. Compact version of the Color Bridge system for shorter runs \u2014 patios, garden walls, or accent sections. Includes track, standoffs, and 36W waterproof driver.",
@@ -551,6 +565,7 @@ const PRODUCTS = {
 
   "CB-TRACK-10M": {
     name: "Flexible Track \u2014 10 Meter Roll",
+    price: 66,
     category: "Track & Accessories",
     model: "DGX (10M)",
     description: "Standalone 10-meter roll of Color Bridge flexible silicone track. Use for extending existing systems or custom-length runs. The silicone construction allows gentle curves and contours around architectural features.",
@@ -567,6 +582,7 @@ const PRODUCTS = {
 
   "CB-TRACK-5M": {
     name: "Flexible Track \u2014 5 Meter Roll",
+    price: 33,
     category: "Track & Accessories",
     model: "DGX (5M)",
     description: "Standalone 5-meter roll of Color Bridge flexible silicone track. Perfect for shorter extensions, accent sections, or tighter installations where a full 10-meter roll isn't needed.",
@@ -583,6 +599,7 @@ const PRODUCTS = {
 
   "CB-STANDOFF": {
     name: "Track Standoff Mount",
+    price: 3,
     category: "Track & Accessories",
     model: "GDJ",
     description: "Aluminum standoff mounting bracket for the Color Bridge track system. Creates a clean, floating look by spacing the track away from the mounting surface. Allows airflow behind the track for optimal thermal performance.",
@@ -597,6 +614,7 @@ const PRODUCTS = {
 
   "CB-ENDCAP": {
     name: "Track End Cap",
+    price: 1,
     category: "Track & Accessories",
     model: "DC001",
     description: "Silicone end cap for sealing the open ends of Color Bridge flexible track. Maintains the IP65 waterproof rating of the system and provides a clean finished look.",
@@ -613,6 +631,7 @@ const PRODUCTS = {
 
   "CB-DRIVER-36W": {
     name: "36W Waterproof Driver",
+    price: 29,
     category: "Drivers & Power",
     model: "36LZ",
     description: "36W waterproof LED driver for the Color Bridge track system. Rated IP67 for full outdoor exposure. Powers up to 5 meters of track with fixtures. Designed for 100\u2013130V AC input (North American standard).",
@@ -628,6 +647,7 @@ const PRODUCTS = {
 
   "CB-DRIVER-72W": {
     name: "72W Waterproof Driver",
+    price: 40,
     category: "Drivers & Power",
     model: "72LZ",
     description: "72W waterproof LED driver for the Color Bridge track system. IP67 rated for complete weather protection. Powers up to 10 meters of track with fixtures. Designed for 100\u2013130V AC input (North American standard).",
@@ -645,6 +665,7 @@ const PRODUCTS = {
 
   "CB-GLOBE-SM": {
     name: 'Globe Light \u2014 4.7"',
+    price: 49,
     category: "Color Bridge Fixtures",
     model: "CQA-HW-YQYKL12-5W",
     description: "Small decorative globe light for the Color Bridge track system. 360\u00b0 omnidirectional warm white glow wrapped in a frosted PMMA diffuser. Creates an elegant floating orb effect along your track. High CRI \u226590 for true color rendering.",
@@ -665,6 +686,7 @@ const PRODUCTS = {
 
   "CB-GLOBE-MD": {
     name: 'Globe Light \u2014 6"',
+    price: 51,
     category: "Color Bridge Fixtures",
     model: "CQA-HW-YQYKL15-5W",
     description: "Medium decorative globe light for the Color Bridge track. Same beautiful 360\u00b0 glow as the small version, with a larger 6-inch diameter for more visual impact. Perfect as a primary feature element along walkways and garden paths.",
@@ -685,6 +707,7 @@ const PRODUCTS = {
 
   "CB-GLOBE-LG": {
     name: 'Globe Light \u2014 7.8"',
+    price: 59,
     category: "Color Bridge Fixtures",
     model: "CQA-HW-YQYKL20-7W",
     description: "Large decorative globe light for the Color Bridge track. The biggest sphere in the series at nearly 8 inches \u2014 a bold statement piece. Higher 7W output provides 500 lumens of warm ambient light. Stunning on entry columns or garden centerpieces.",
@@ -722,6 +745,7 @@ const PRODUCTS = {
       "Voltage": "DC 24V",
       "IP Rating": "IP65"
     },
+    price: 73,
     images: ["images/CB-TUBE.jpg"]
   },
 
@@ -742,6 +766,7 @@ const PRODUCTS = {
       "Voltage": "DC 24V",
       "IP Rating": "IP65"
     },
+    price: 124,
     images: ["images/CB-TUBE.jpg"]
   },
 
@@ -765,6 +790,7 @@ const PRODUCTS = {
       "Voltage": "DC 24V",
       "IP Rating": "IP65"
     },
+    price: 65,
     images: ["images/CB-SPOT-12W-W.jpg"]
   },
 
@@ -786,6 +812,7 @@ const PRODUCTS = {
       "Voltage": "DC 24V",
       "IP Rating": "IP65"
     },
+    price: 65,
     images: ["images/CB-SPOT-12W-B.jpg"]
   },
 
@@ -807,6 +834,7 @@ const PRODUCTS = {
       "Voltage": "DC 24V",
       "IP Rating": "IP65"
     },
+    price: 48,
     images: ["images/CB-LINEAR-15W.jpg"]
   },
 
@@ -830,6 +858,7 @@ const PRODUCTS = {
       "Voltage": "DC 24V",
       "IP Rating": "IP65"
     },
+    price: 44,
     images: ["images/CB-NARROW-10W.jpg"]
   },
 
@@ -851,6 +880,7 @@ const PRODUCTS = {
       "Voltage": "DC 24V",
       "IP Rating": "IP65"
     },
+    price: 76,
     images: ["images/CB-LANTERN-RND.jpg"]
   },
 
@@ -870,6 +900,7 @@ const PRODUCTS = {
       "Voltage": "DC 24V",
       "IP Rating": "IP65"
     },
+    price: 89,
     images: ["images/CB-LANTERN-SQ.jpg"]
   },
 
@@ -889,6 +920,7 @@ const PRODUCTS = {
       "Voltage": "DC 24V",
       "IP Rating": "IP65"
     },
+    price: 98,
     images: ["images/CB-LANTERN-GLOBE.jpg"]
   },
 
@@ -905,6 +937,7 @@ const PRODUCTS = {
       "IP Rating": "IP65",
       "Type": "Rigid mount"
     },
+    price: 9,
     images: ["images/LNT-MOUNT.jpg"]
   },
 
@@ -919,6 +952,7 @@ const PRODUCTS = {
       "IP Rating": "IP65",
       "Type": "Track fixing clip"
     },
+    price: 2,
     images: ["images/LNT-CLIP.png"]
   },
 
@@ -941,6 +975,7 @@ const PRODUCTS = {
       "Voltage": "DC 24V",
       "IP Rating": "IP65"
     },
+    price: 74,
     images: ["images/LNT-DOWNLIGHT-12W.jpg"]
   },
 
@@ -961,6 +996,7 @@ const PRODUCTS = {
       "Voltage": "DC 24V",
       "IP Rating": "IP65"
     },
+    price: 75,
     images: ["images/LNT-DUAL-14W.png"]
   },
 
@@ -981,6 +1017,7 @@ const PRODUCTS = {
       "Voltage": "DC 24V",
       "IP Rating": "IP65"
     },
+    price: 54,
     images: ["images/LNT-NARROW-10W.jpg"]
   },
 
@@ -1001,6 +1038,7 @@ const PRODUCTS = {
       "Voltage": "DC 24V",
       "IP Rating": "IP65"
     },
+    price: 48,
     images: ["images/LNT-WALL-12W.jpg"]
   },
 
@@ -1021,6 +1059,7 @@ const PRODUCTS = {
       "Voltage": "DC 24V",
       "IP Rating": "IP65"
     },
+    price: 74,
     images: ["images/LNT-SPOT-12W.png"]
   }
 };
@@ -1031,7 +1070,7 @@ const PRODUCTS = {
 const CONTACT = {
   phone: "(602) 339-5130",
   email: "",
-  showroom: "Premier Lighting \u2014 2050 S. 16th St. Suite 111, Phoenix AZ 85034",
+  showroom: "Premier Lighting \u2014 15507 N Scottsdale Rd #140, Scottsdale, AZ 85254",
   hours: "Mon\u2013Thu 8am\u20132pm by appointment"
 };
 
@@ -1126,6 +1165,7 @@ function renderProduct(product, productId) {
     <div class="content">
       <div class="category-badge fade-up">${product.category}</div>
       <h1 class="product-name fade-up d1">${product.name}</h1>
+      ${product.price ? `<div class="product-price fade-up d1">$${product.price}</div>` : ''}
       <div class="product-model fade-up d1">${product.model} &nbsp;|&nbsp; ID: ${productId}</div>
 
       <div class="tag-row fade-up d2">
@@ -1191,6 +1231,7 @@ function renderCatalog() {
               }
             </div>
             <h3>${p.name}</h3>
+            ${p.price ? `<div class="card-price">$${p.price}</div>` : ''}
             <div class="card-model">${p.model}</div>
             <div class="card-watts">${p.specs.Wattage || p.specs['Track Length'] || p.specs.Type || ''}</div>
           </a>
