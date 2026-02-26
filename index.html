@@ -1165,7 +1165,7 @@ function renderProduct(product, productId) {
     <div class="content">
       <div class="category-badge fade-up">${product.category}</div>
       <h1 class="product-name fade-up d1">${product.name}</h1>
-      ${product.price ? `<div class="product-price fade-up d1">$${product.price}</div>` : ''}
+      ${product.price ? `<div class="product-price fade-up d1">Suggested Retail: $${product.price}</div>` : ''}
       <div class="product-model fade-up d1">${product.model} &nbsp;|&nbsp; ID: ${productId}</div>
 
       <div class="tag-row fade-up d2">
@@ -1231,7 +1231,7 @@ function renderCatalog() {
               }
             </div>
             <h3>${p.name}</h3>
-            ${p.price ? `<div class="card-price">$${p.price}</div>` : ''}
+            ${p.price ? `<div class="card-price">Suggested Retail: $${p.price}</div>` : ''}
             <div class="card-model">${p.model}</div>
             <div class="card-watts">${p.specs.Wattage || p.specs['Track Length'] || p.specs.Type || ''}</div>
           </a>
